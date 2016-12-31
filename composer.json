@@ -1,0 +1,59 @@
+{
+    "name": "mizu/framework",
+    "description": "The Mizu Framework built for Mizu CMS based on Laravel Framework.",
+    "keywords": ["framework", "laravel", "mizu"],
+    "license": "MIT",
+    "type": "project",
+    "homepage": "https://github.com/SafeStudio",
+    "support": {
+        "issues": "https://github.com/SafeStudio/mizu-framework/issues",
+        "source": "https://github.com/SafeStudio/mizu-framework"
+    },
+    "author": {
+        "name": "Le Minh Tri",
+        "email": "ansidev@gmail.com"
+    },
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/framework": "5.3.*"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~5.0",
+        "symfony/css-selector": "3.1.*",
+        "symfony/dom-crawler": "3.1.*"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
+        ],
+        "post-install-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan optimize"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
